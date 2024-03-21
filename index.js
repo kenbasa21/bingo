@@ -8,6 +8,8 @@ let isB = false,
     isG = false,
     isO = false;
 
+let BNumber, INumber, NNumber, GNumber, ONumber;
+
 // function ; max is parameter
 function generateNumber(max) {
     // Addition = +
@@ -21,40 +23,50 @@ function generateNumber(max) {
     // Gt >, GTE > =, LT <, LTE < =, EQ =, NEQ !=, AND &&, OR ||
 
     if (randomNumber <= 15) {
-        isB = true;
-        console.log('The number is in B.');
+        isB = true; BNumber = randomNumber;
+        console.log(`The Number ${randomNumber} is in B`);
 
     } else if (randomNumber >= 16 && randomNumber <= 30) {
-        isI = true;
-        console.log('The number in in I.');
+        isI = true; INumber = randomNumber;
+        console.log(`The Number ${randomNumber} is in I`);
 
     } else if (randomNumber >= 31 && randomNumber <= 45) {
-        isN = true;
-        console.log('The number in in N.');
+        isN = true;  NNumber = randomNumber;
+        console.log(`The Number ${randomNumber} is in N``);
 
     } else if (randomNumber >= 46 && randomNumber <= 60) {
-        isG = true;
-        console.log('The number in in G.');
+        isG = true; GNumber = randomNumber;
+        console.log('The Number' ${randomNumber} is in G);
 
     } else if (randomNumber >= 61 && randomNumber <= 75) {
-        isO = true;
-        console.log('The number in in O.');
+        isO = true; ONumber = randomNumber;
+        console.log('The Number' ${randomNumber} is in O);
 
     } else {
         console.log('The number is invalid');
     }
 
     if (isB == true && isI == true && isN == true && isG == true && isO == true) {
-        console.log('BINGOOO!!');
+        console.log('BINGO!!');
+        
+        console.table({
+            B: BNumber, 
+            I: INumber, 
+            N: NNumber, 
+            G: GNumber, 
+            O: ONumber,
+
+        })
+
     }
 
-    return console.log(randomNumber);
-}
+    //return console.log(randomNumber);
+
 
 // function generateNumber(max) {
 // }
 //Loops
-// let counter = 10;
+let counter = 10;
 // for (counter; counter > 0; counter -= 1) {
 //    console.log('Counter is ${counter}');
 //    generateNumber(75);
@@ -67,3 +79,15 @@ function generateNumber(max) {
 //    console.log('Counter is ${counter}');
 //    counter -= 1;
 // }
+
+while (
+    
+    isB == false ||
+    isI == false ||
+    isN == false ||
+    isG == false ||
+    isO == false 
+    
+    ) {
+        generateNumber(75);
+
