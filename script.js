@@ -1,27 +1,46 @@
-let generatedNumbers = [];
-
-function generateRandomNumber() {
-  let maxNumber = 75;
-
-  try {
-    // Generate unique numbers for each cell
-    for (let i = 0; i < 25; i++) {
-      let randomNumber;
-      do {
-        randomNumber = Math.floor(Math.random() * maxNumber) + 1;
-      } while (generatedNumbers.includes(randomNumber));
-
-      generatedNumbers.push(randomNumber);
-    }
-
-    // Fill the cells with the generated numbers
-    let cells = document.querySelectorAll('td');
-    cells.forEach(function(cell, index) {
-      cell.textContent = generatedNumbers[index];
-    });
-  } catch (error) {
-    console.error("An error occurred:", error);
+function generateNumbers() {
+    let bNumbers = generateColumnNumbers(1, 15, 'B');
+    let iNumbers = generateColumnNumbers(16, 30, 'I');
+    let nNumbers = generateColumnNumbers(31, 45, 'N');
+    let gNumbers = generateColumnNumbers(46, 60, 'G');
+    let oNumbers = generateColumnNumbers(61, 75, 'O');
+  
+    displayNumbers(bNumbers, iNumbers, nNumbers, gNumbers, oNumbers);
   }
-}
-
-window.onload = generateRandomNumber;
+  
+  function generateColumnNumbers(minNumber, maxNumber, column) {
+    let numbers = [];
+    let excludeNumbers = [];
+    
+    let cells = document.querySelectorAll(`#bingoTable .${column}`);
+    for (let i = 0; i < cells.length; i++) {
+      let number;
+      do {
+        number = generateRandomNumber(minNumber, maxNumber);
+      } while (excludeNumbers.includes(number));
+      excludeNumbers.push(number);
+      numbers.push(number);
+    }
+  
+    return numbers;
+  }
+  
+  function generateRandomNumber(minNumber, maxNumber) {
+    return Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
+  }
+  
+  function displayNumbers(bNumbers, iNumbers, nNumbers, gNumbers, oNumbers) {
+    let bCells = document.querySelectorAll('#bingoTable .B');
+    let iCells = document.querySelectorAll('#bingoTable .I');
+    let nCells = document.querySelectorAll('#bingoTable .N');
+    let gCells = document.querySelectorAll('#bingoTable .G');
+    let oCells = document.querySelectorAll('#bingoTable .O');
+  
+    bCells.forEach((cell, index) => cell.textContent = bNumbers[index]);
+    iCells.forEach((cell, index) => cell.textContent = iNumbers[index]);
+    nCells.forEach((cell, index) => cell.textContent = nNumbers[index]);
+    gCells.forEach((cell, index) => cell.textContent = gNumbers[index]);
+    oCells.forEach((cell, index) => cell.textContent = oNumbers[index]);
+  }
+  
+  generateNumbers();
